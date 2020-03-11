@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Isaiah Baker</title>
+</head>
+<body>
+            <div class="nav">
+                <h1>Isaiah Baker</h1>
+            <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="flightime.html">Flight time calculator</a></li>
+                        <li><a href="http://github.com/isaiah-baker/">github</a></li>
+                        <script src="js/air-port-codes-api-min.js"></script>
+                    </ul>
+            </nav>
+            </div>
+            <!-- Mathematics in Flight: Distance, Rate and Time Lesson Plan                                                             
+                Exercise 1The P-51 aircraft travels at a cruising speed of 275 knots and has a range (maximum distance) of 1,000 miles.
+                Can it fly for three hours before running out of fuel?  Can it fly for 4 hours before running out of fuel? -->
+            <div class="flightTime">
+                <div class="fdc">
+                        <h2>Flight Distance Calculator</h2>
+                        <p>
+                            <label for="rate">
+                              <span>AirSpeed (knt): </span>
+                              
+                            </label>
+                            <input type="text" id="rate" name="rate">
+                        </p>
+                        <p>
+                            <label for="time">
+                              <span>Time (hrs): </span>
+                              
+                            </label>
+                            <input type="text" id="time" name="time">
+                        </p>  
+                        <p>
+                            <label for="distance">
+                              <span>Distance (mi): </span>
+                              
+                            </label>
+                            <input type="text" id="distance" name="distance">
+                        </p>
+                        <p>
+                            <button type="submit" id="calculate">Calculate Distance</button>
+                        </p>
+                </div>
+
+                
+            
+                
+                <div class="coordinates">
+                    <h2>Coordinates</h2>
+                    <p>
+                            <label for="departure">
+                              <span>Departure Iata Code: </span>
+                              
+                            </label>
+                            <input type="text" id="departure" name="departure">
+                    </p>  
+                    <p>
+                            <label for="destination">
+                              <span>Destination Iata Code: </span>
+                              
+                            </label>
+                            <input type="text" id="destination" name="destination">
+                    </p>
+
+                    <h3>Departure</h3>
+                    <p id="DepLat"></p>
+                    <p id="DepLong"></p>
+                    <h3>Destination</h3>
+                    <p id="DestLat"></p>
+                    <p id="DestLong"></p>
+                    
+                    <p>
+                        <button type="submit" id="coord">Fetch Coordinates</button>
+                    </p>
+                
+                </div>
+            </div>
+     
+            
+            
+        
+    
+    
+    
+    <script src="js/air-port-codes-api-min.js"></script>
+    <script src="js/flighTimeScript.js"></script>
+    
+
+
+</body>
+</html>
