@@ -1,3 +1,5 @@
+    <!-- https://www.movable-type.co.uk/scripts/latlong.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="js/map.js"></script>
+
     <link rel="stylesheet" href="style.css">
     <title>Isaiah Baker</title>
 </head>
@@ -14,25 +20,62 @@
             <nav>
                     <ul>
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="flightime.html">Flight time calculator</a></li>
+                        <li><a href="flightBrief.html">Flight Brief</a></li>
+                        <li><a href="arduino.html">Arduino</a></li>
                         <li><a href="http://github.com/isaiah-baker/">github</a></li>
+                        
                         <script src="js/air-port-codes-api-min.js"></script>
                     </ul>
             </nav>
             </div>
-            <!-- Mathematics in Flight: Distance, Rate and Time Lesson Plan                                                             
-                Exercise 1The P-51 aircraft travels at a cruising speed of 275 knots and has a range (maximum distance) of 1,000 miles.
-                Can it fly for three hours before running out of fuel?  Can it fly for 4 hours before running out of fuel? -->
+        
             <div class="flightTime">
                 <div class="fdc">
-                        <h2>Flight Distance Calculator</h2>
+                        <h2>Flight Time Calculator</h2>
+                        <p>
+                                <label for="trueCourse">
+                                  <span>True Course (degrees): </span>
+                                  
+                                </label>
+                                <input type="text" id="trueCourse" name="trueCourse" placeholder="FIND" >
+                            </p>
+                            <p>
+                                    <label for="distance">
+                                      <span>Distance (mi): </span>
+                                      
+                                    </label>
+                                    <input type="text" id="distance" name="distance" placeholder="FIND">
+                                </p>    
+                            <p>
+                                    <label for="wndDir">
+                                      <span>Wind Direction: </span>
+                                      
+                                    </label>
+                                    <input type="text" id="wndDir" name="wndDir">
+                                </p>    
                         <p>
                             <label for="rate">
-                              <span>AirSpeed (knt): </span>
+                              <span>True AirSpeed (knt): </span>
                               
                             </label>
                             <input type="text" id="rate" name="rate">
                         </p>
+
+                        <p>
+                                <label for="gndSpeed">
+                                  <span>Ground Speed (knt): </span>
+                                  
+                                </label>
+                                <input type="text" id="gndSpeed" name="gndSpeed" placeholder="calculate">
+                            </p>
+                            <p>
+                                    <label for="addedTime">
+                                      <span>Added Time: </span>
+                                      
+                                    </label>
+                                    <input type="text" id="addedTime" name="addedTime">
+                                </p>    
+                         
                         <p>
                             <label for="time">
                               <span>Time (hrs): </span>
@@ -40,15 +83,9 @@
                             </label>
                             <input type="text" id="time" name="time">
                         </p>  
+                        
                         <p>
-                            <label for="distance">
-                              <span>Distance (mi): </span>
-                              
-                            </label>
-                            <input type="text" id="distance" name="distance">
-                        </p>
-                        <p>
-                            <button type="submit" id="calculate">Calculate Distance</button>
+                            <button type="submit" id="calculate">Calculate Flight Time</button>
                         </p>
                 </div>
 
@@ -82,20 +119,22 @@
                     <p>
                         <button type="submit" id="coord">Fetch Coordinates</button>
                     </p>
-                
+
+                    <div id="map"></div>
+
+                    <script>
+                    
+                    </script>
+                                        
                 </div>
+
             </div>
-     
             
-            
-        
-    
-    
     
     <script src="js/air-port-codes-api-min.js"></script>
-    <script src="js/flighTimeScript.js"></script>
     
-
+  
+    <script src="js/flightBrief.js"></script>
 
 </body>
 </html>

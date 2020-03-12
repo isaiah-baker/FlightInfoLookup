@@ -1,10 +1,13 @@
+
+
 const flight = {
-    trueAirSpeed: 0,
-    groundSpeed: 0,
+    trueCouse: 0,
+    distanceNM: 0,
     windDirection: 0,
     windSpeed: 0,
-    distanceNM: 0,
-    time: 0.0,
+    trueAirSpeed: 0,
+    groundSpeed: 0,   
+    addedTime: 0.0,
     airportIataCodes : {
         destination: '',
         departing: ''
@@ -46,6 +49,11 @@ btnCalculate.addEventListener("click", function(){
 
 });
 
+function calculateFlightTime(){
+    
+}
+
+
 function calculateNaiveDistance(r, t){
     let distance = (r * t);
     flight.distanceNM = distance
@@ -58,17 +66,30 @@ btnCoordinates.addEventListener("click", function(){
     departureIata = txtDepartureIata.value
 
 
-    fetchDestinationAirportInformation(destIata)
-    fetchDepartureAirportInformation(departureIata)
+    // fetchDestinationAirportInformation(destIata)
+    // fetchDepartureAirportInformation(departureIata)
     
-    
+    fetchAirportInfo(destIata,departureIata)
     // Display Destination
     
 
 });
 
+
+function fetchAirportInfo(dest,departure){
+    fetchDestinationAirportInformation(dest)
+    fetchDepartureAirportInformation(departure)
+}
+
+var map = L.map('map')
+
+function setMapView(lat,lng){
+    map.setView([lat, lng], 13);
+}
+
+
 function fetchDepartureAirportInformation(iata){
-    var apcm = new apc('single', {key: '*',secret: '*', limit: 7})      
+    var apcm = new apc('single', {key: '****d486af',secret: '****c1846c5fbb1', limit: 7}) 
     
     // handle successful response
     apcm.onSuccess = function (data) {
@@ -76,6 +97,20 @@ function fetchDepartureAirportInformation(iata){
     txtDepLat.innerHTML = data.airport.latitude
     txtDepLong.innerHTML = data.airport.longitude
     let elevation = data.airport.elevation
+
+    setMapView(data.airport.latitude,data.airport.longitude)
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // var depPoint = L.point(data.airport.latitude,data.airport.longitude)
+    L.marker([data.airport.latitude,data.airport.longitude]).addTo(map)
+
+// L.marker([51.5, -0.09]).addTo(map)
+//     .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+//     .openPopup();
+ 
 
     };
  
@@ -89,7 +124,7 @@ function fetchDepartureAirportInformation(iata){
 }
 
 function fetchDestinationAirportInformation(iata){
-    
+    var apcm = new apc('single', {key: '****d486af',secret: '****c1846c5fbb1', limit: 7}) 
             
     // handle successful response
     apcm.onSuccess = function (data) {
@@ -97,19 +132,29 @@ function fetchDestinationAirportInformation(iata){
     txtDestLat.innerHTML = data.airport.latitude
     txtDestLong.innerHTML = data.airport.longitude
     let elevation = data.airport.elevation
-    };
+
+    
+    L.path([])    
+        
+    L.marker([data.airport.latitude,data.airport.longitude]).addTo(map)
+
+        };
  
+
+    
 // handle response error
     apcm.onError = function (data) {
     console.log(data.message);
     };
+
  
 // makes the request to get the airport data
     apcm.request(iata);
-}
+};
 
 
 
-// api key 0330d486af
-// secret key 7a0dc1846c5fbb1
+
+
+
 
